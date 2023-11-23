@@ -1,0 +1,106 @@
+<!-- registration.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+    <title>Registration</title>
+</head>
+<style>
+    /* style.css */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* Добавлено для выравнивания по центру */
+    }
+
+    .container {
+        width: 300px; /* Уменьшена ширина контейнера */
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 8px;
+    }
+
+    input {
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+
+</style>
+<body>
+<div class="container">
+    <h2>REGISTRATION</h2>
+    <form th:object="${user1}"
+          th:action="@{/save-update/{id}(id=${user1.id})}"
+          th:method="post">
+
+        <label for="username">Name:</label>
+        <input type="text" id="username" th:field="*{name}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" th:field="*{age}" required>
+
+        <label for="password">password:</label>
+        <input type="password" id="password" th:field="*{password}" required>
+
+        <label for="appStatus">Subscribe Status:</label>
+        <select id="appStatus" th:field="*{subscriptionStatus}" required>
+            <option value="BASIC">BASIC</option>
+            <option value="PREMIUM">PREMIUM</option>
+        </select>
+        <label>
+            <input type="checkbox" checked="checked" name="subscribe" th:field="*{subscribe}">
+            Daily Newsletter
+        </label>
+        <button type="submit">UPDATE</button>
+        <br>
+        <button>
+            <a href="/login">SIGN IN</a>
+        </button>
+
+    </form>
+
+</div>
+</body>
+</html>
+
