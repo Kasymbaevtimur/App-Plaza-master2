@@ -1,0 +1,109 @@
+<!-- registration.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<style>
+    /* style.css */
+    body {
+        background: url("https://celes.club/uploads/posts/2022-11/1667259474_1-celes-club-p-fon-igrovoi-krasivo-1.png");
+        background-size: 100% 100%;
+        font-family: Arial, sans-serif;
+        /*background-color: #f4f4f4;*/
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* Добавлено для выравнивания по центру */
+    }
+
+    .container {
+        width: 400px; /* Уменьшена ширина контейнера */
+        background-color: #495d6c;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 8px;
+    }
+
+    input {
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #38538d;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #7bb66a;
+    }
+
+
+</style>
+<body>
+<div class="container">
+    <h2>REGISTRATION</h2>
+    <form th:object="${user}"
+          th:action="@{/save}"
+          th:method="post">
+
+        <label for="username">Name:</label>
+        <input type="text" id="username" th:field="*{name}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required>
+
+        <label for="password">password:</label>
+        <input type="password" id="password" th:field="*{password}" required>
+
+        <label for="appStatus">Subscribe Status:</label>
+        <select id="appStatus" th:field="*{subscriptionStatus}" required>
+            <option value="BASIC">BASIC</option>
+            <option value="PREMIUM">PREMIUM</option>
+        </select>
+        <br>
+        <label>
+            <input type="checkbox" checked="checked" name="subscribe" th:field="*{subscribe}">
+            Daily Newsletter
+        </label>
+
+        <button type="submit">REGISTRATION</button>
+        <br>
+
+        <button type="button" onclick="window.location.href='/login'">LOGIN</button>
+    </form>
+<!--    <a href="/">MAIN PAGE</a>-->
+<!--&lt;!&ndash;        <a href="/login"><button>LOGIN</button></a>&ndash;&gt;-->
+<!--    -->
+
+
+</div>
+<button type="button" onclick="window.location.href='/'">MAIN</button>
+</body>
+</html>
+

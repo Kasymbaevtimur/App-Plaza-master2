@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+
+</head>
+<style>
+    /* style.css */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 50%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    td:first-child {
+        font-weight: bold;
+    }
+
+</style>
+<body>
+
+<div class="container">
+    <h2>INFORMATION</h2>
+    <table>
+        <tbody th:object="${user}">
+        <tr >
+            <td>ID:</td>
+            <td th:text="${user.id}"></td> <!-- Замени на фактический ID пользователя -->
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${user.name}"></td> <!-- Замени на фактическое имя пользователя -->
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td th:text="${user.age}"></td> <!-- Замени на фактический возраст пользователя -->
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td th:text="${user.email}"></td> <!-- Замени на фактический email пользователя -->
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td th:text="${user.getAuthorities()}"></td> <!-- Замени на фактическую роль пользователя -->
+        </tr>
+        <tr>
+            <td>Subscribe:</td>
+            <td th:text="${user.subscribe}"></td> <!-- Замени на фактическое значение подписки на рассылку -->
+        </tr>
+        <tr>
+            <td>Subscribe status:</td>
+            <td th:text="${user.subscriptionStatus}"></td> <!-- Замени на фактический статус подписки -->
+        </tr>
+        <tr>
+            <td>Create date:</td>
+            <td th:text="${user.createDate}"></td> <!-- Замени на фактическую дату создания пользователя -->
+        </tr>
+        </tbody>
+    </table>
+    <button><a  th:href="@{/update/{id}(id=${user.id})}"
+               ><strong>UPDATE</strong></a>
+    </button>
+
+    <a th:href="@{applications/update/{id}(id=${app.getId()})}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+        </svg>
+    </a></div>
+
+</body>
+</html>

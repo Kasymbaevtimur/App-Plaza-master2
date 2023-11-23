@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main menu</title>
+    <style>
+        body {
+            background: url("https://celes.club/uploads/posts/2022-11/1667259474_1-celes-club-p-fon-igrovoi-krasivo-1.png");
+            background-size: 100% 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            /*background-color: #ecf0f1; !* Цвет фона страницы *!*/
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .button {
+            padding: 20px 40px;
+            font-size: 24px;
+            background-color: #3498db; /* Цвет фона кнопки */
+            color: #fff; /* Цвет текста кнопки */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+        }
+
+        .button:hover {
+            background-color: #2980b9; /* Изменяем цвет фона при наведении курсора */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/applications" >
+        <button  class="button">APPLICATION</button>
+    </a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/genres">
+        <button class="button">GENRES</button>
+    </a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/find-all">
+        <button class="button">USERS</button>
+    </a>
+    <a sec:authorize="isAuthenticated()" href="/profile">
+        <button class="button">PROFILE</button>
+    </a>
+    <a href="/add">
+        <button class="button">REGISTRATION</button>
+    </a>
+    <a href="/login">
+        <button class="button">LOGIN</button>
+    </a>
+</div>
+</body>
+</html>
